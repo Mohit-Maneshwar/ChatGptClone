@@ -5,7 +5,7 @@ const userModel = require("../models/user.model");
 const aiService = require("../services/ai.service");
 const messageModel = require("../models/message.model");
 const { createMemory, queryMemory } = require("../services/vector.service");
-const { text } = require("express");
+
 
 function initSocketServer(httpServer) {
   const io = new Server(httpServer, {});
@@ -47,6 +47,8 @@ function initSocketServer(httpServer) {
         metadata:{}
       })
 
+      console.log(" Retrieved memory from Pinecone:", memory);
+
       await createMemory({
         vectors: userVectors,
         messageId: message._id,
@@ -57,8 +59,6 @@ function initSocketServer(httpServer) {
         },
       });
 
-      
-      console.log("Memory matches:", memory);
 
       // get last 20 messages as chat history
       const chatHistory = (

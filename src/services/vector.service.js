@@ -17,7 +17,7 @@ async function createMemory({ vectors, metadata, messageId }) {
     }
   ]);
 
-  console.log(" Memory saved in Pinecone:", messageId?.toString() || "UUID");
+  // console.log(" Memory saved in Pinecone:", messageId?.toString() || "UUID");
 }
 
 async function queryMemory({ queryVector, limit = 5, metadata }) {
